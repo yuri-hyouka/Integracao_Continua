@@ -1,0 +1,34 @@
+# Ignorar diretórios de controle de versão
+.git
+.gitignore
+
+# Ignorar cache e artefatos Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Ignorar pacotes locais e builds
+*.egg-info/
+.eggs/
+*.egg
+dist/
+build/
+pip-wheel-metadata/
+
+# Ignorar arquivos temporários do sistema/IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Ignorar dependências baixadas (não precisa copiar para o container)
+venv/
+.env
+.env.*
+*.log
+
+# Ignorar arquivos do Docker e Compose (não precisam estar dentro da imagem)
+docker-compose.yml

@@ -1,0 +1,24 @@
+version: '3.9'
+
+networks:
+  app_network:
+    driver: bridge
+
+services:
+  conversor:
+    build:
+      context: .
+      dockerfile: docker/conversor/Dockerfile
+    container_name: conversor_app # Facilita a referência ao contêiner
+    restart: unless-stopped # Garante que o serviço reinicie se cair
+    ports:
+      - "5000:5000"
+    volumes:
+      # Este bind mount é ótimo para desenvolvimento (live-reload).
+      # Para produção, o código deve ser copiado para a imagem via Dockerfile
+      # e esta linha deve ser removida.
+      - ./src:/app
+    networks:
+      - app_network
+    # environment:
+    #   - NOME_VARIAVEL=valor
