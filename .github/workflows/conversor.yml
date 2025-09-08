@@ -7,16 +7,15 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Baixar o código
-    - uses: actions/checkout@v4
+      - name: Baixar o código
+        uses: actions/checkout@v4
       
-    - name: Configurar Docker Buildx
-    - uses: docker/setup-buildx-action@v3.11.1
+      - name: Configurar Docker Buildx
+        uses: docker/setup-buildx-action@v3.11.1
       
-    - name: Build the Docker image
-      run: docker build -t conversor-web:latest -f docker/conversor/Dockerfile .
+      - name: Build the Docker image
+        run: docker build -t conversor-web:latest -f docker/conversor/Dockerfile .
