@@ -14,6 +14,24 @@ jobs:
       - name: Baixar o código
         uses: actions/checkout@v4
       
+      - name: Setup Python Test
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r src/requirements.txt
+          pip install flake8 pytest
+      
+      - name: Rodar lint com flake8
+        run: |
+          flake8 src/
+      
+      - name: Rodar testes
+        run: pytest src/tests
+      
       - name: Configurar Docker Buildx
         uses: docker/setup-buildx-action@v3.11.1
 
@@ -22,6 +40,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker image
+        run: docker build -t test-image -f docker/conversor/Dockerfile .
+
+      - name: Testar container
+        run: |
+          docker run --rm test-image python app.py --help
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v6.18.0
