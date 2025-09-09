@@ -4,6 +4,7 @@ import requests
 
 app = Flask(__name__)
 
+
 def get_exchange_rate():
     """Busca a taxa USD-BRL em tempo real"""
     try:
@@ -13,6 +14,7 @@ def get_exchange_rate():
     except Exception as e:
         print("Erro ao buscar cotação:", e)
         return None
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -25,14 +27,21 @@ def index():
 
             if direcao == "brl_to_usd":
                 convertido = round(valor / taxa, 2)
-                resultado = f"R${valor:.2f} = US${convertido:.2f} (1 USD = R${taxa:.2f})"
+                resultado = (
+                    f"R${valor:.2f} = US${convertido:.2f} "
+                    f"(1 USD = R${taxa:.2f})"
+                )
             else:
                 convertido = round(valor * taxa, 2)
-                resultado = f"US${valor:.2f} = R${convertido:.2f} (1 USD = R${taxa:.2f})"
+                resultado = (
+                    f"US${valor:.2f} = R${convertido:.2f} "
+                    f"(1 USD = R${taxa:.2f})"
+                )
         except ValueError:
             resultado = "Digite um valor numérico válido!"
-    
+
     return render_template("index.html", resultado=resultado, taxa=taxa)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

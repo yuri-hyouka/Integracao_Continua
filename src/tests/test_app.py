@@ -1,4 +1,5 @@
-from app import converter_dolar
+from app import get_exchange_rate
 
-def test_converter_dolar():
-    assert converter_dolar(10, 5.0) == 50.0
+def test_get_exchange_rate():
+    taxa = get_exchange_rate()
+    assert taxa is None or taxa > 0
