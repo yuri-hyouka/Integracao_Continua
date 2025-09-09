@@ -44,6 +44,7 @@ jobs:
             username: ${{ secrets.EC2_USER  }}
             key: ${{ secrets.EC2_KEY  }}
             script: |
+              touch teste.txt
               docker stop conversor-web || true
               docker rm conversor-web || true
               docker pull ${{ secrets.DOCKER_USERNAME }}/conversor-web:latest
