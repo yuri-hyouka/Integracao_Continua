@@ -30,8 +30,8 @@ jobs:
           file: docker/conversor/Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/conversor-web:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/conversor-web:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/conversor-web:latest
+            ${{ secrets.DOCKER_USERNAME }}/conversor-web:${{ github.sha }}
 
           
           
