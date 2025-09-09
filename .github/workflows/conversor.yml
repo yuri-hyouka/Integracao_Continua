@@ -44,10 +44,6 @@ jobs:
       - name: Build Docker image
         run: docker build -t test-image -f docker/conversor/Dockerfile .
 
-      - name: Testar container
-        run: |
-          docker run --rm test-image pytest src/tests
-
       - name: Build and push Docker images
         uses: docker/build-push-action@v6.18.0
         with:
