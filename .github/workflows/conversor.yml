@@ -30,7 +30,7 @@ jobs:
           flake8 src/
       
       - name: Rodar testes
-        run: pytest src/tests
+        run: PYTHONPATH=src pytest src/tests
       
       - name: Configurar Docker Buildx
         uses: docker/setup-buildx-action@v3.11.1
