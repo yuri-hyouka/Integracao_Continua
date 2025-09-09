@@ -46,7 +46,7 @@ jobs:
 
       - name: Testar container
         run: |
-          docker run --rm test-image python app.py --help
+          docker run --rm test-image pytest src/tests
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v6.18.0
